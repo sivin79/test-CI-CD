@@ -2,8 +2,9 @@ name: "test-publish-CI-CD"
 
 on:
   push:
-    tags:
-      - 'v*.*.*'
+   branches:
+      - "*"
+
 jobs:
   test:
     runs-on: ubuntu-latest
