@@ -1,3 +1,5 @@
+name: "test-publish-CI-CD"
+
 on:
   push:
     branches:
