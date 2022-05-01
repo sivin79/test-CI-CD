@@ -15,7 +15,14 @@ jobs:
       - name: Check output
         run:
           echo ${{ steps.vars.outputs.tag }}
-
+          
+  bash-example:
+    runs-on: ubuntu-latest
+    env:
+      MY_NAME: "Mona The Octocat"
+    steps:
+      - name: bash-version
+        run: echo "::add-mask::$MY_NAME"
 
   build:
     runs-on: ubuntu-latest
