@@ -2,10 +2,21 @@ name: "test-publish-CI-CD"
 
 on:
   push:
-    tags:        
-      - v1.**
-
+    tags:
+      - 'v*.*.*'
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set env
+        run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF:10}
+      - name: Test
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ env.RELEASE_VERSION }}
+
+
   build:
     runs-on: ubuntu-latest
     steps:
