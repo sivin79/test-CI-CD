@@ -23,7 +23,9 @@ jobs:
       MY_NAME: "Mona The Octocat"
     steps:
       - name: bash-version
-        run: echo "::add-mask::$MY_NAME"
+        run: | 
+          echo $MY_NAME
+          echo "::add-mask::$MY_NAME"
 
   build:
     runs-on: ubuntu-latest
