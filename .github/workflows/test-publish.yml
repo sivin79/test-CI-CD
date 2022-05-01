@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: build
-        run: echo 'building'
+        run: echo 'Building'
 
   publish:
     needs: [build]
