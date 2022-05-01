@@ -12,10 +12,3 @@ jobs:
       - name: build
          echo 'building'
 
-  publish:
-    needs: [build]
-    runs-on: ubuntu-latest
-    environment: production
-    steps:
-      - name: publish
-         echo 'publishing'
