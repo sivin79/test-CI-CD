@@ -2,8 +2,8 @@ name: "test-publish-CI-CD"
 
 on:
   push:
-    branches:
-      - main
+    tags:        
+      - v1.**
 
 jobs:
   build:
@@ -20,10 +20,3 @@ jobs:
       - name: publish
         run: echo 'publishing'
         
-  print-tag:
-    runs-on: ubuntu-latest
-    if:  ${{ github.event.inputs.print_tags == 'true' }} 
-    steps:
-      - name: Print the input tag to STDOUT
-        run: echo  'The tags are ${{ github.event.inputs.tags }}'
-
