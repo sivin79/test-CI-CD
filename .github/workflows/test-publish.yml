@@ -2,40 +2,17 @@ name: "test-publish-CI-CD"
 
 on:
   push:
-   branches:
-      - "*"
-
+    tags:
+      - 'v*.*.*'
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: Set output
-        id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF:10}
-      - name: Check output
-        run:
-          echo ${{ steps.vars.outputs.tag }}
-          
-  bash-example:
-    runs-on: ubuntu-latest
-    env:
-      MY_NAME: "Mona The Octocat"
-    steps:
-      - name: bash-version
-        run: echo "::add-mask::$MY_NAME"
-
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: build
-        run: echo 'Building'
-
-  publish:
-    needs: [build]
-    runs-on: ubuntu-latest
-    environment: production
-    steps:
-      - name: publish
-        run: echo 'Publishing'
+      - uses: actions/checkout@v2
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: Test
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ env.RELEASE_VERSION }}
         
